@@ -1,0 +1,151 @@
+additional DAX (Data Analysis Expressions) formulas and Power BI codes to enhance your Sustainable Supply Chain Performance Dashboard:
+
+
+1. DAX Measures for Inventory Analysis
+
+1.1 Total Inventory Cost
+
+Calculates the total cost of available stock.
+
+TotalInventoryCost = SUM(Inventory[Stock Levels] * Inventory[Unit Cost])
+
+1.2 Stock Turnover Ratio
+
+Measures how often inventory is sold and replaced.
+
+StockTurnoverRatio = 
+    DIVIDE(
+        SUM(Inventory[Number of Products Sold]), 
+        SUM(Inventory[Stock Levels]), 
+        0
+    )
+
+1.3 Stock Availability Rate
+
+Percentage of stock available out of total order quantity.
+
+StockAvailabilityRate = 
+    DIVIDE(
+        SUM(Inventory[Stock Levels]), 
+        SUM(Inventory[Order Quantities]), 
+        0
+    ) * 100
+
+2. DAX Measures for Manufacturing Analysis
+
+2.1 Average Production Time
+
+Finds the average time taken to manufacture products.
+
+AvgProductionTime = AVERAGE(Manufacturing[Manufacturing Lead Time])
+
+2.2 Total Defective Products
+
+Summarizes the total number of defective products based on defect rate.
+
+TotalDefectiveProducts = 
+    SUMX(Manufacturing, Manufacturing[Production Volumes] * Manufacturing[Defect Rates] / 100)
+
+2.3 Production Efficiency Score
+
+Measures production efficiency as a percentage.
+
+ProductionEfficiency = 
+    DIVIDE(
+        SUM(Manufacturing[Production Volumes] - TotalDefectiveProducts), 
+        SUM(Manufacturing[Production Volumes]), 
+        0
+    ) * 100
+
+3. DAX Measures for Supplier Performance Analysis
+
+3.1 Average Supplier Lead Time
+
+Calculates the average time taken by suppliers to deliver goods.
+
+AvgSupplierLeadTime = AVERAGE(Supplier[Lead Time])
+
+3.2 Supplier Reliability Score
+
+Measures supplier reliability based on lead time performance.
+
+SupplierReliability = 
+    DIVIDE(
+        SUMX(Supplier, IF(Supplier[Lead Time] <= 7, 1, 0)), 
+        COUNT(Supplier[Supplier Name]), 
+        0
+    ) * 100
+
+4. DAX Measures for Supply Chain Performance
+
+4.1 Total Revenue Generated
+
+Calculates the total revenue from all sold products.
+
+TotalRevenue = SUM(SupplyChain[Revenue Generated])
+
+4.2 On-Time Delivery Rate
+
+Percentage of orders delivered on time.
+
+OnTimeDeliveryRate = 
+    DIVIDE(
+        SUMX(SupplyChain, IF(SupplyChain[Shipping Times] <= SupplyChain[Lead Times], 1, 0)), 
+        COUNT(SupplyChain[SKU]), 
+        0
+    ) * 100
+
+4.3 Total Shipping Costs
+
+Calculates the total transportation costs.
+
+TotalShippingCost = SUM(SupplyChain[Shipping Costs])
+
+4.4 Profit Margin Calculation
+
+Finds the profit margin percentage.
+
+ProfitMargin = 
+    DIVIDE(
+        SUM(SupplyChain[Revenue Generated]) - SUM(Manufacturing[Manufacturing Costs]) - SUM(SupplyChain[Shipping Costs]), 
+        SUM(SupplyChain[Revenue Generated]), 
+        0
+    ) * 100
+
+5. Additional Power BI Enhancements
+
+5.1 Conditional Formatting for Low Stock Levels
+
+Use Rule-Based Formatting to highlight products with stock levels below the threshold (e.g., 20 units).
+
+Click on Stock Levels column > Conditional Formatting > Background Color and set:
+
+Red for low stock (<20)
+
+Yellow for medium stock (20–50)
+
+Green for healthy stock (>50)
+
+
+
+5.2 KPI Visuals for Supply Chain Metrics
+
+Use Card Visuals to display:
+
+Total Revenue
+
+Stock Availability Rate
+
+Production Efficiency
+
+Supplier Reliability
+
+On-Time Delivery Rate
+
+
+
+5.3 Drill-Through Feature for Detailed Product Analysis
+
+Create a Drill-Through Page to analyze SKU-specific data.
+
+Set Product SKU as the drill-through field, allowing users to right-click and explore detailed information.
