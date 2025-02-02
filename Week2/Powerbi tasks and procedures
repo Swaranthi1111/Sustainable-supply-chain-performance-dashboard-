@@ -1,0 +1,171 @@
+Step 1: Creating the GitHub Repository
+
+I created a new GitHub repository named Task2-PowerBI, following the same procedure as in Week 2:
+
+1. Clicked on the + New repository button.
+
+2. Named the repository Task2-PowerBI.
+
+3. Added a short description: "Enhanced Power BI Dashboard with advanced data analysis".
+
+4. Set the repository visibility as Public.
+
+5. Clicked Create repository.
+
+Step 2: Importing the Dataset into Power BI
+
+To build a meaningful dashboard, I first imported and cleaned the dataset in Power BI using the following steps:
+
+2.1 Open Power BI and Load the Data
+
+1. Launch Power BI Desktop.
+
+
+2. Click on Home > Get Data > Excel/CSV (depending on the file format).
+
+
+3. Select the dataset file from your local system and click Open.
+
+
+4. Choose the necessary tables or sheets from the dataset preview and click Load.
+
+
+
+2.2 Data Cleaning and Transformation
+
+After loading the dataset, I used Power Query Editor to clean the data:
+
+1. Remove Unnecessary Columns:
+
+Click on Transform Data > Select columns that are not required > Click Remove Columns.
+
+
+
+2. Handle Missing Data:
+
+Use Replace Values to fill missing numerical values with 0 or N/A.
+
+Use Remove Rows if the missing data is significant.
+
+
+
+3. Change Data Types:
+
+Ensure numerical values are formatted correctly (e.g., currency, percentage).
+
+Click on each column > Select appropriate data type from the dropdown.
+
+
+
+4. Rename Columns for better readability:
+
+Example: Change Prod_ID to Product ID.
+
+
+
+5. Create New Columns if Needed:
+
+Use Add Column > Custom Column to derive new values from existing data.
+
+
+
+6. Apply & Close the transformations to save the changes and load the cleaned dataset into Power BI.
+
+Step 3: Creating Visualizations
+
+To analyze data effectively, I created different types of visuals in Power BI.
+
+3.1 Adding a Table Visualization
+
+1. Click on Report View in Power BI.
+
+
+2. Select Table Visualization from the Visualizations Pane.
+
+
+3. Drag and drop the following fields into the table:
+
+Product Type
+
+SKU
+
+Availability
+
+Stock Levels
+
+Revenue Generated
+
+
+
+4. Adjust column width and formatting for clarity.
+
+
+3.2 Creating a Bar Chart for Sales Analysis
+
+1. Click on Bar Chart from the Visualizations Pane.
+
+
+2. Drag Product Type into the X-axis.
+
+
+3. Drag Number of Products Sold into the Y-axis.
+
+
+4. Customize colors and labels using Format Pane for better readability.
+
+
+3.3 Creating a Line Chart for Monthly Sales Trends
+
+1. Click on Line Chart from the Visualizations Pane.
+
+
+2. Drag Month into the X-axis.
+
+
+3. Drag Total Sales into the Y-axis.
+
+
+4. Add Data Labels for better visibility
+
+3.4 Creating a Pie Chart for Category Sales Distribution
+
+1. Click on Pie Chart from the Visualizations Pane.
+
+
+2. Drag Product Category into Legend.
+
+
+3. Drag Revenue Generated into Values.
+
+
+4. Adjust the legend position and color scheme.
+
+3.5 Creating Key Metrics Using DAX
+
+I added DAX measures to summarize important business insights:
+
+Total Revenue Calculation
+
+TotalRevenue = SUM(Inventory[Revenue Generated])
+
+Stock Availability Percentage
+
+StockAvailability = 
+    DIVIDE(SUM(Inventory[Stock Levels]), SUM(Inventory[Order Quantities]), 0)
+
+
+These measures were displayed in Card Visuals to highlight key performance indicators (KPIs).
+
+
+3.6 Finalizing the Dashboard
+
+1. Arrange the visuals in a structured layout.
+
+
+2. Add Titles and Descriptions for clarity.
+
+
+3. Apply Filters (e.g., product categories, regions) to enable dynamic analysis.
+
+
+4. Save the Power BI file before moving to GitHub for submission.
